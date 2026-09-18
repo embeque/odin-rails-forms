@@ -1,0 +1,59 @@
+<h1>Edit Existing User</h1>
+
+<!--
+
+<form action="/users/<%= @user.id %>" method="post" accept-charset="UTF-8">
+    <% if @user.errors.any? %>
+    <div class="errors_with_field" style="color: red;">
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="PATCH">
+    <div class="input_field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="user[username]">
+    </div>
+    <div class="input_field">
+        <label for="email">E-mail</label>
+        <input type="text" id="email" name="user[email]">
+    </div>
+    <div class="input_field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="user[password]">
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+--> 
+
+<%= form_with(model: @user) do |form| %>
+    <% if @user.errors.any? %>
+    <div class="errors_with_field" style="color: red;">
+        <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <div class="input_field">
+        <%= form.label :username, "Your username here" %>
+        <%= form.text_field :username %>
+    </div>
+    <div class="input_field">
+        <%= form.label :email, "E-mail" %>
+        <%= form.email_field :email, placeholder: "example@example.com" %>
+    </div>
+    <div class="input_field">
+        <%= form.label :password, "Password" %>
+        <%= form.password_field :password %>
+    </div>
+
+    <%= form.submit "Submit" %>
+<% end %>
